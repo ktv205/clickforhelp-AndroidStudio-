@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@color/white"
+    >
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/verification_linear_no_network"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/no_connection"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/verification_button_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/nyupurple"
+            android:text="@string/no_connection_retry"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/fverification_edit_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/string_text_code"
+        android:inputType="number"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/nyupurple"
+        android:textColorHint="@color/ghostwhite" >
+    </EditText>
+
+    <TextView
+        android:id="@+id/fverification_text_resend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/string_text_resend"
+        android:textColor="@color/red" >
+    </TextView>
+
+    <Button
+        android:id="@+id/fverification_button_submit"
+        style="@style/buttons"
+        android:text="@string/string_text_submit" >
+    </Button>
+
+</LinearLayout>

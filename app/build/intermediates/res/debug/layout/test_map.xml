@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/map_linear_no_network"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="@string/no_connection"
+
+            android:textColor="@color/white"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/map_button_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/nyupurple"
+            android:text="@string/no_connection_retry"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView android:id="@+id/text_people"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:gravity="end"
+        android:textColor="@color/red"
+        android:background="@color/white" >
+    </TextView>
+
+    <Button
+        android:id="@+id/button_help"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/red"
+        android:text="@string/string_button_help"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/white" />
+
+</LinearLayout><!-- From: file:/C:/Users/krishnateja/AndroidStudioProjects/ClickForHelp/app/src/main/res/layout/test_map.xml -->

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/welcome_parent0_relative"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/welcome_button_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="12dp"
+        android:background="@color/nyupurple"
+        android:text="@string/string_nyu_signup"
+        android:textColor="@color/white"
+        android:textSize="25sp" >
+    </Button>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/welcome_button_signup"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="30dp"
+        android:text="@string/string_app_name"
+        android:textColor="@color/nyupurple"
+        android:textSize="60sp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/welcome_text_member"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/welcome_button_signup"
+        android:layout_alignStart="@id/welcome_button_signup"
+        android:layout_below="@id/welcome_button_signup"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/nyupurple"
+        android:text="@string/string_text_member"
+        android:textSize="20sp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/welcome_text_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/welcome_button_signup"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/welcome_text_member"
+        android:layout_toRightOf="@id/welcome_text_member"
+        android:text="@string/string_text_login"
+        android:textColor="@color/blue"
+        android:textSize="20sp" >
+    </TextView>
+
+</RelativeLayout><!-- From: file:/C:/Users/krishnateja/AndroidStudioProjects/ClickForHelp/app/src/main/res/layout/fragment_welcome.xml -->

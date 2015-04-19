@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3033cc3a2c68dff3e5b646d6d084bdbdf7d00b25">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-e362fb4cca66853deb6e561a383ab3a8839d4cf0.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="17f8750d5c0749e44dd7c54aa390d9c937803825">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-41b0e67a8c751885e55bbfb53c4858c8541fe3a3.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-52d5305a9e75291ae744331459f08399b987bd0e.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a96b762bde4139de855735f175ec4d17dca55a6d">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-ca836346a83539754c2b50fb298d292c7eb1f363.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a08d65794b844d8e7540bf9a33859bf3b2482d7f">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-f89d6d6a97e74f4e7a76d340fb76fead86ade341.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ef5f051e7308febe289dc93c67c5f32785b4260a">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-0abc168faf935ec13bd4837eedc8f45f82fa543b.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-b8d92ceb5af5f1dec38265a22e0197c4fe0fd42e.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="055783146ba9654a725442563be78cad303aad1f">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-a8d21dece0f2621b635273c928967ebb922f09f1.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4c93d99d454c975536bbe3b42283eee847f03ea3">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-7c147382881fba0fbf5b305f2d59c10475e012d0.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4cd0b093824b3228fffc21ea369b98d0b1db6566">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-b9bb85225798e346cc9dfe61562122225daf28e2.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="7ff613bf78ab057293892fdbd4169eda899c89b9">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-9adb5ecab194d1934e87fad73ccb076a5ca7e019.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="fb04b12526b0073c7fb1ebb70c5842d82ee95596">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-7696d581fcecdaf1a67236280988728c908f99c5.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="73ccb92b70112f2e463e415ef8d7275de7da6516">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-129600eeefa356a0eda7fa5479f9eeed414cc272.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9224bc4c54ba95147c7eabd874573763c07cb6be">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-5d246609f26be640b75b588bfae54a39c40e7736.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-4cf1264f091431797d427508345a16544d27c351.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="29fd6d3794b71491c2789708cd8d03c71feb8954">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-5ce0066fdb8eeacacd046ad55ce39930d655e2da.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="41b3870cbe5fa546d8095b5b89d42cb69f3dd175">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-626f70c1c93fac41f2318600625a2fb02d4be382.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="c976518693e89ad44fbfccfc654941eaec198d08">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-9398cb770f252f37147cc0a44a9944fce2b6e23e.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-318fdbbb2c832e96fda9c935db1fc55f1e8bedaa.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3c0b099f9de16b265ecd6122fcb603e7d0d29f90">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-7cb467eb426ceb52312f8f35753059c940ddce4e.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e3d791b42eaa90416cd0b2d2e608092794a3baa4">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-04e6410bcb8959ab5b66aa696bdcaa4afeb47a43.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1c5a76debf0c2857ccad422c4a80ed785982f8df">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-24a291384bd4e352b1493b9a125bb4da3d213ff9.jar" />
+    </item>
+    <item
+        jar="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="0e8228b4bc69c6a2c8d7c18498a77e53417d2574">
+        <dex dex="C:\Users\krishnateja\AndroidStudioProjects\ClickForHelp\app\build\intermediates\pre-dexed\debug\classes-12014aa6ae96ff36db2657707fa055eb3fa8bbd3.jar" />
+    </item>
+
+</items>
