@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.clickforhelp.models.LocationDetailsModel;
 import com.example.clickforhelp.models.RequestParams;
@@ -51,6 +52,8 @@ public class SendLocationsAsyncTask extends
 		super.onPostExecute(result);
 		if (mUserLocations != null) {
 			if(result!=null){
+                //Toast.makeText(mContext,result,Toast.LENGTH_SHORT).show();
+                Log.d(TAG,result);
                 int code=MyJSONParser.AuthenticationParser(result);
 				mUserLocations.getData(code,MyJSONParser.parseLocation(result));
 			}

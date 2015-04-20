@@ -1,8 +1,11 @@
 package com.example.clickforhelp.controllers.ui;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import com.example.clickforhelp.controllers.services.ActivityRecognitionService;
 import com.example.clickforhelp.controllers.services.LocationUpdateService;
+import com.example.clickforhelp.controllers.services.SingleLocationUpdateService;
 import com.example.clickforhelp.controllers.utils.CommonFunctions;
 import com.example.clickforhelp.controllers.utils.CommonResultAsyncTask;
 import com.example.clickforhelp.controllers.utils.CommonResultAsyncTask.ServerResponse;
@@ -17,6 +20,10 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.Builder;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.ActivityRecognition;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -31,15 +38,20 @@ import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -131,11 +143,27 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     //Linear layout for no network
     private LinearLayout mNoNetworkLinearLayout;
 
+    //field for constant NO_CONNECTION to check for response from the httpmanager
     private static final int NO_CONNECTION = 999;
+
+    //check if Activity recognition is enabled
+    private boolean mIsEnabled = false;
+
+    //alarm manager to send location updates every 30 min no matter what
+    private PendingIntent mPendingIntent;
+
+    //boolean to check if he is still
+    private boolean mIsStill = false;
+
+    //String to get the activity type
+    private String mActivityType=AppPreferences.SharedPrefActivityRecognition.WALKING;
+
+
+    //
 
 	/*
      * (non-Javadoc)
-	 * 
+	 *
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 
@@ -145,8 +173,8 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
         if (mContext == null) {
             mContext = getApplicationContext();
         }
-        if(isMyServiceRunning(LocationUpdateService.class, mContext)){
-            stopService(new Intent(mContext,LocationUpdateService.class));
+        if (isMyServiceRunning(LocationUpdateService.class, mContext)) {
+            stopService(new Intent(mContext, LocationUpdateService.class));
         }
         if (checkLoggedIn(mContext)) {
             setContentView(R.layout.test_map);
@@ -172,6 +200,12 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
                 retriveIntentExtras(intent);
             }
 
+            //get ActivityRecognition status from saved preferences
+            mIsEnabled = getActivityRecognitionStatus();
+
+            //register a alarm manager
+            setUpStillLocationUpdateAlarmManager();
+
         } else {
             startActivity(new Intent(mContext, AuthenticationActivity.class));
             finishAffinity();
@@ -188,13 +222,16 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     @Override
     protected void onResume() {
         super.onResume();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mActivityBroadcastReceiver,
+                new IntentFilter("activity"));
         if (isMyServiceRunning(LocationUpdateService.class,
                 mContext)) {
             stopService(new Intent(mContext, LocationUpdateService.class));
         }
-        if(!checkLoggedIn(mContext)){
+        if (!checkLoggedIn(mContext)) {
             stopLocationUpdates();
-            Intent intent=new Intent(mContext,AuthenticationActivity.class);
+            stopAlarmManager();
+            Intent intent = new Intent(mContext, AuthenticationActivity.class);
             startActivity(intent);
             finishAffinity();
         }
@@ -210,6 +247,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     @Override
     protected void onPause() {
         super.onPause();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mActivityBroadcastReceiver);
     }
 
     @Override
@@ -233,9 +271,9 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     }
 
     // creating and accessing menu options
-	/*
-	 * (non-Javadoc)
-	 * 
+    /*
+     * (non-Javadoc)
+	 *
 	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
 	 */
 
@@ -247,8 +285,8 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     }
 
 	/*
-	 * (non-Javadoc)
-	 * 
+     * (non-Javadoc)
+	 *
 	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
 	 */
 
@@ -274,8 +312,8 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     }
 
 	/*
-	 * (non-Javadoc)
-	 * 
+     * (non-Javadoc)
+	 *
 	 * @see
 	 * com.google.android.gms.maps.OnMapReadyCallback#onMapReady(com.google.
 	 * android.gms.maps.GoogleMap)
@@ -290,8 +328,8 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     }
 
 	/*
-	 * (non-Javadoc)
-	 * 
+     * (non-Javadoc)
+	 *
 	 * @see
 	 * com.google.android.gms.maps.GoogleMap.OnMapLoadedCallback#onMapLoaded()
 	 */
@@ -306,8 +344,8 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     }
 
 	/*
-	 * (non-Javadoc)
-	 * 
+     * (non-Javadoc)
+	 *
 	 * @see
 	 * com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener
 	 * #onConnectionFailed(com.google.android.gms.common.ConnectionResult)
@@ -321,8 +359,8 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     }
 
 	/*
-	 * (non-Javadoc)
-	 * 
+     * (non-Javadoc)
+	 *
 	 * @see
 	 * com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks
 	 * #onConnected(android.os.Bundle)
@@ -331,12 +369,15 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     @Override
     public void onConnected(Bundle arg0) {
         settingUpMapLocationSource();
+        if (!mIsEnabled) {
+            settingUpActivityRecognition();
+        }
 
     }
 
 	/*
-	 * (non-Javadoc)
-	 * 
+     * (non-Javadoc)
+	 *
 	 * @see
 	 * com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks
 	 * #onConnectionSuspended(int)
@@ -348,8 +389,8 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     }
 
 	/*
-	 * (non-Javadoc)
-	 * 
+     * (non-Javadoc)
+	 *
 	 * @see
 	 * com.google.android.gms.maps.LocationSource#activate(com.google.android
 	 * .gms.maps.LocationSource.OnLocationChangedListener)
@@ -365,7 +406,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.google.android.gms.maps.LocationSource#deactivate()
 	 */
 
@@ -376,7 +417,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * com.google.android.gms.location.LocationListener#onLocationChanged(android
 	 * .location.Location)
@@ -390,59 +431,49 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
             mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(arg0
                     .getLatitude(), arg0.getLongitude())));
             mOnLocationChangeListener.onLocationChanged(arg0);
-            RequestParams updateLocationParams = null, helpParams = null, helpingParams = null;
+            RequestParams helpParams = null, helpingParams = null;
             double lat = arg0.getLatitude();
             double lng = arg0.getLongitude();
-            if (mHelpFlag == ASK_HELP_FLAG) {
-                updateLocationParams = CommonFunctions
-                        .buildLocationUpdateParams(
-                                mUserEmail,
-                                lat,
-                                lng,
-                                new String[]{
-                                        AppPreferences.SharedPrefActivityRecognition.WALKING,
-                                        UPDATE_HOME}, mContext);
+            if (mHelpFlag == ASK_HELP_FLAG && !mActivityType.equals(AppPreferences.SharedPrefActivityRecognition.STILL)) {
+                Log.d(TAG,"not still and idle");
+                mIsStill = false;
+                sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.WALKING, UPDATE_HOME);
 
             } else if (mHelpFlag == ASKED_HELP_FLAG) {
-                updateLocationParams = CommonFunctions
-                        .buildLocationUpdateParams(
-                                mUserEmail,
-                                lat,
-                                lng,
-                                new String[]{
-                                        AppPreferences.SharedPrefActivityRecognition.WALKING,
-                                        UPDATE}, mContext);
-                helpParams = CommonFunctions.setParams(new String[]{
-                        HELPER_LIST, mUserEmail}, mContext);
+                sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.WALKING, UPDATE);
 
             } else if (mHelpFlag == HELPING_FLAG) {
-                updateLocationParams = CommonFunctions
-                        .buildLocationUpdateParams(
-                                mUserEmail,
-                                lat,
-                                lng,
-                                new String[]{
-                                        AppPreferences.SharedPrefActivityRecognition.WALKING,
-                                        UPDATE}, mContext);
+                sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.WALKING, UPDATE);
                 helpingParams = CommonFunctions.setParams(new String[]{
                         TRACK_VICTIM, mUserEmail, mVictimUserEmail}, mContext);
 
+            } else if (mHelpFlag == ASK_HELP_FLAG && mActivityType.equals(AppPreferences.SharedPrefActivityRecognition.STILL)) {
+                Log.d(TAG,"still and idle");
+                if (!mIsStill) {
+                    Log.d(TAG,"1st time sending still update");
+                    sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.STILL, UPDATE_HOME);
+                    mIsStill = true;
+                } else {
+                    Log.d(TAG,"later calling home");
+                    RequestParams homeParams = CommonFunctions.setParams(new String[]{"home", mUserEmail}, mContext);
+                    new SendLocationsAsyncTask(this).execute(homeParams);
+                }
             }
 
             if (mHelpFlag == ASKED_HELP_FLAG) {
                 Toast.makeText(this, "looking for helpers->" + mUserEmail,
                         Toast.LENGTH_SHORT).show();
-                new SendLocationsAsyncTask().execute(updateLocationParams);
-                new SendLocationsAsyncTask(this).execute(helpParams);
+
+                new SendLocationsAsyncTask(MainActivity.this).execute(helpParams);
             } else if (mHelpFlag == HELPING_FLAG) {
                 Toast.makeText(this, "looking for victims", Toast.LENGTH_SHORT)
                         .show();
-                new SendLocationsAsyncTask().execute(updateLocationParams);
+
                 new SendLocationsAsyncTask(this).execute(helpingParams);
             } else {
                 Toast.makeText(this, "looking for users", Toast.LENGTH_SHORT)
                         .show();
-                new SendLocationsAsyncTask(this).execute(updateLocationParams);
+
             }
         }
     }
@@ -499,6 +530,9 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
         Builder builder = new GoogleApiClient.Builder(this)
                 .addApi(LocationServices.API).addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this);
+        if (!mIsEnabled) {
+            builder.addApi(ActivityRecognition.API);
+        }
 
         mGoogleApiClient = builder.build();
         mGoogleApiClient.connect();
@@ -535,11 +569,13 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View v) {
                 if (mHelpFlag == ASK_HELP_FLAG) {
+
                     if (mAnimation != null) {
                         mHelpButton.startAnimation(mAnimation);
                     }
                     removeMarkers();
                     mIsHighAccuracy = true;
+
                     resetAccuracyOfLocation();
                     RequestParams params = CommonFunctions.helpParams(
                             ASK_HELP_PATH, mUserEmail, mContext);
@@ -646,7 +682,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
      * method to get stuff from intents
      */
     public void retriveIntentExtras(Intent intent) {
-         if (intent.hasExtra(AppPreferences.IntentExtras.COORDINATES)) {
+        if (intent.hasExtra(AppPreferences.IntentExtras.COORDINATES)) {
             mHelpFlag = HELPING_FLAG;
             mHelpButton.setAnimation(mAnimation);
             mIsHighAccuracy = true;
@@ -657,7 +693,6 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
         } else if (intent.hasExtra(AppPreferences.IntentExtras.HELP_EXTRA)) {
             mHelpFlag = intent.getExtras().getInt(
                     AppPreferences.IntentExtras.HELP_EXTRA);
-
             settingTextOfButton(mHelpFlag);
         }
 
@@ -801,5 +836,72 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
             }
         });
     }
+
+    public void settingUpActivityRecognition() {
+        if (!mIsEnabled) {
+            Toast.makeText(mContext, "enabling", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, ActivityRecognitionService.class);
+            PendingIntent callbackIntent = PendingIntent.getService(this, 0,
+                    intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingResult<Status> result = ActivityRecognition.ActivityRecognitionApi
+                    .requestActivityUpdates(mGoogleApiClient, // your connected
+                            // GoogleApiClient
+                            300000, // how often you want callbacks
+                            callbackIntent); // the PendingIntent which will
+            // receive updated activities
+            result.setResultCallback(new ResultCallback<Status>() {
+                @Override
+                public void onResult(Status status) {
+                    if (status.isSuccess()) {
+                        Log.d(TAG, "success in registering with activity recognition");
+                        CommonFunctions
+                                .saveActivityRecognitionPreference(mContext);
+                    }
+                }
+            });
+        }
+    }
+
+    public boolean getActivityRecognitionStatus() {
+        return CommonFunctions.getSharedPreferences
+                (mContext, AppPreferences.SharedPrefActivityRecognition.name).
+                getBoolean(AppPreferences.SharedPrefActivityRecognition.enabled, false);
+    }
+
+    private BroadcastReceiver mActivityBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d(TAG, "activity received");
+            if (intent != null && intent.hasExtra(Intent.EXTRA_TEXT)) {
+                mActivityType = intent.getStringExtra(Intent.EXTRA_TEXT);
+                Log.d(TAG, "mActivityType->" + mActivityType);
+
+            }
+        }
+    };
+
+    public void setUpStillLocationUpdateAlarmManager() {
+        Calendar calendar = Calendar.getInstance();
+        Intent intent = new Intent(this, SingleLocationUpdateService.class);
+        mPendingIntent = PendingIntent.getService(this, 0, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 60 * 1000 * 30, mPendingIntent);
+    }
+
+    public void stopAlarmManager() {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.cancel(mPendingIntent);
+    }
+
+    public void sendLocationUpdate(double lat, double lng, String activityType, String mode) {
+        RequestParams updateLocationParams = CommonFunctions.buildLocationUpdateParams(mUserEmail, lat, lng, new String[]{activityType, mode}, mContext);
+        if (mode.equals(UPDATE_HOME)) {
+            new SendLocationsAsyncTask(MainActivity.this).execute(updateLocationParams);
+        } else {
+            new SendLocationsAsyncTask().execute(updateLocationParams);
+        }
+
+    }
+
 
 }

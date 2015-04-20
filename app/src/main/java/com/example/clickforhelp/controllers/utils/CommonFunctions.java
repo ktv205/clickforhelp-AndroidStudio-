@@ -237,6 +237,7 @@ public class CommonFunctions {
 
     }
 
+
     public static boolean checkLoggedIn(Context context) {
         SharedPreferences authPref = CommonFunctions.getSharedPreferences(
                 context, AppPreferences.SharedPrefAuthentication.name);
@@ -244,11 +245,10 @@ public class CommonFunctions {
                 AppPreferences.SharedPrefAuthentication.user_email, "");
         String flag = authPref.getString(
                 AppPreferences.SharedPrefAuthentication.flag, "");
-        Log.d(TAG, flag);
         if (!name.isEmpty()
                 && flag.equals(AppPreferences.SharedPrefAuthentication.FLAG_ACTIVE)) {
             return true;
-        } else {
+        }else {
             return false;
         }
 
