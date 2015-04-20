@@ -1,3 +1,9 @@
-<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android" >
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="320dp"
+    android:minHeight="40dp"
+    android:updatePeriodMillis="6000000"
+    android:initialLayout="@layout/help_appwidget"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen">
 
 </appwidget-provider><!-- From: file:/C:/Users/krishnateja/AndroidStudioProjects/ClickForHelp/app/src/main/res/xml/help_appwidget_info.xml -->

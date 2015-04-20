@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+    <Button
+        android:id="@+id/help_widget_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ask help"
+        android:background="@color/red"
+        android:textColor="@color/white"/>
+    <TextView
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/help_widget_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 people"
+        android:textColor="@color/red"/>
+
+</LinearLayout>
