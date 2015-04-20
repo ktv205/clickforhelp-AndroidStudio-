@@ -19,7 +19,7 @@
     <uses-permission android:name="com.example.clickforhelp.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
     <!--
      The following two permissions are not required to use
      Google Maps Android API v2, but are recommended.
@@ -40,33 +40,28 @@
             android:name="com.example.clickforhelp.controllers.ui.MainActivity"
             android:icon="@drawable/nyu_white"
             android:label="@string/app_name"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.clickforhelp.controllers.ui.AuthenticationActivity"
             android:icon="@drawable/nyu_white"
             android:label="@string/app_name"
-            android:launchMode="singleInstance" >
-        </activity>
+            android:launchMode="singleInstance" />
         <activity
             android:name="com.example.clickforhelp.controllers.ui.SettingsActivity"
             android:icon="@drawable/nyu_white"
             android:label="@string/activity_settings"
             android:launchMode="standard"
-            android:parentActivityName="com.example.clickforhelp.controllers.ui.MainActivity" >
-        </activity>
+            android:parentActivityName="com.example.clickforhelp.controllers.ui.MainActivity" />
         <activity
             android:name="com.example.clickforhelp.controllers.ui.ForgotPasswordActivity"
             android:icon="@drawable/nyu_white"
-            android:launchMode="singleInstance" >
-        </activity>
+            android:launchMode="singleInstance" />
         <activity
             android:name="com.example.clickforhelp.controllers.ui.FeedbackActivity"
             android:icon="@drawable/nyu_white"
             android:label="@string/activity_feedback"
             android:launchMode="singleTop"
-            android:parentActivityName="com.example.clickforhelp.controllers.ui.SettingsActivity" >
-        </activity>
+            android:parentActivityName="com.example.clickforhelp.controllers.ui.SettingsActivity" />
         <activity
             android:name="com.example.clickforhelp.controllers.ui.HelperActivity"
             android:launchMode="singleInstance" >
@@ -127,6 +122,8 @@
         <service
             android:name="com.example.clickforhelp.controllers.services.LocationUpdateService"
             android:exported="false" />
+        <service android:name="com.example.clickforhelp.controllers.services.ActivityRecognitionService" />
+        <service android:name="com.example.clickforhelp.controllers.services.SingleLocationUpdateService" />
 
         <meta-data
             android:name="com.google.android.gms.version"
