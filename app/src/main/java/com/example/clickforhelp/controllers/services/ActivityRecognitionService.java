@@ -61,7 +61,7 @@ public class ActivityRecognitionService extends IntentService {
                         LocationUpdateService.class, mContext);
                 boolean activityRunning = CommonFunctions
                         .isActivityRunning(mContext);
-                if (serviceRunning || activityRunning) {
+                if ((serviceRunning || activityRunning) && activity!=null) {
 
                     Intent activityIntent = new Intent("activity");
                     activityIntent.putExtra(Intent.EXTRA_TEXT, activity);

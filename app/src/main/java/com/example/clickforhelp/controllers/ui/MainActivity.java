@@ -156,7 +156,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     private boolean mIsStill = false;
 
     //String to get the activity type
-    private String mActivityType=AppPreferences.SharedPrefActivityRecognition.WALKING;
+    private String mActivityType = AppPreferences.SharedPrefActivityRecognition.WALKING;
 
 
     //
@@ -405,7 +405,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     }
 
 	/*
-	 * (non-Javadoc)
+     * (non-Javadoc)
 	 *
 	 * @see com.google.android.gms.maps.LocationSource#deactivate()
 	 */
@@ -416,7 +416,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     }
 
 	/*
-	 * (non-Javadoc)
+     * (non-Javadoc)
 	 *
 	 * @see
 	 * com.google.android.gms.location.LocationListener#onLocationChanged(android
@@ -434,8 +434,8 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
             RequestParams helpParams = null, helpingParams = null;
             double lat = arg0.getLatitude();
             double lng = arg0.getLongitude();
-            if (mHelpFlag == ASK_HELP_FLAG && !mActivityType.equals(AppPreferences.SharedPrefActivityRecognition.STILL)) {
-                Log.d(TAG,"not still and idle");
+            if (mHelpFlag == ASK_HELP_FLAG && mActivityType != null && !mActivityType.equals(AppPreferences.SharedPrefActivityRecognition.STILL)) {
+                Log.d(TAG, "not still and idle");
                 mIsStill = false;
                 sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.WALKING, UPDATE_HOME);
 
@@ -447,14 +447,16 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
                 helpingParams = CommonFunctions.setParams(new String[]{
                         TRACK_VICTIM, mUserEmail, mVictimUserEmail}, mContext);
 
-            } else if (mHelpFlag == ASK_HELP_FLAG && mActivityType.equals(AppPreferences.SharedPrefActivityRecognition.STILL)) {
-                Log.d(TAG,"still and idle");
+            } else if (mHelpFlag == ASK_HELP_FLAG &&
+                    mActivityType != null &&
+                    mActivityType.equals(AppPreferences.SharedPrefActivityRecognition.STILL)) {
+                Log.d(TAG, "still and idle");
                 if (!mIsStill) {
-                    Log.d(TAG,"1st time sending still update");
+                    Log.d(TAG, "1st time sending still update");
                     sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.STILL, UPDATE_HOME);
                     mIsStill = true;
                 } else {
-                    Log.d(TAG,"later calling home");
+                    Log.d(TAG, "later calling home");
                     RequestParams homeParams = CommonFunctions.setParams(new String[]{"home", mUserEmail}, mContext);
                     new SendLocationsAsyncTask(this).execute(homeParams);
                 }
@@ -463,12 +465,10 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
             if (mHelpFlag == ASKED_HELP_FLAG) {
                 Toast.makeText(this, "looking for helpers->" + mUserEmail,
                         Toast.LENGTH_SHORT).show();
-
                 new SendLocationsAsyncTask(MainActivity.this).execute(helpParams);
             } else if (mHelpFlag == HELPING_FLAG) {
                 Toast.makeText(this, "looking for victims", Toast.LENGTH_SHORT)
                         .show();
-
                 new SendLocationsAsyncTask(this).execute(helpingParams);
             } else {
                 Toast.makeText(this, "looking for users", Toast.LENGTH_SHORT)
