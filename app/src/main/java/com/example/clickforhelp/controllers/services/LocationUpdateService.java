@@ -22,7 +22,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.widget.Toast;
 
 public class LocationUpdateService extends Service implements
         OnConnectionFailedListener, ConnectionCallbacks, LocationListener {

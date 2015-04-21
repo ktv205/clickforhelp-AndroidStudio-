@@ -42,106 +42,34 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/ui/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="12.698944" vertical-offset="6863" max-vertical-offset="15419">
-              <caret line="832" column="38" selection-start-line="832" selection-start-column="38" selection-end-line="832" selection-end-column="38" />
+            <state vertical-scroll-proportion="5.5194807" vertical-offset="0" max-vertical-offset="14909">
+              <caret line="25" column="59" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
+              <folding>
+                <element signature="e#13067#13068#0" expanded="true" />
+                <element signature="e#13115#13116#0" expanded="true" />
+                <element signature="e#18812#19384#0" expanded="true" />
+                <element signature="e#19373#19374#0" expanded="true" />
+                <element signature="e#20127#20128#0" expanded="true" />
+                <element signature="e#20168#20169#0" expanded="true" />
+                <element signature="e#25950#26270#0" expanded="true" />
+                <element signature="e#26259#26260#0" expanded="true" />
+                <element signature="e#27014#27430#0" expanded="true" />
+                <element signature="e#27415#27416#0" expanded="true" />
+                <element signature="e#27788#28180#0" expanded="true" />
+                <element signature="e#28173#28174#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LocationUpdateService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/services/LocationUpdateService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.571429" vertical-offset="1788" max-vertical-offset="2771">
+              <caret line="116" column="25" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#18535#23030#0" expanded="true" />
-                <element signature="e#23019#23020#0" expanded="true" />
-                <element signature="e#30693#30694#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1714" max-vertical-offset="2414">
-              <caret line="112" column="79" selection-start-line="112" selection-start-column="63" selection-end-line="112" selection-end-column="79" />
-              <folding>
-                <element signature="e#6308#6347#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="help_appwidget_info.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/help_appwidget_info.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
-              <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="help_appwidget.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/help_appwidget.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.222222" vertical-offset="0" max-vertical-offset="578">
-              <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HelpWidgetReceiver.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/receivers/HelpWidgetReceiver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241">
-              <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
-              <folding>
-                <element signature="e#2657#2658#0" expanded="true" />
-                <element signature="e#2720#2721#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UpdateWidgetService.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/services/UpdateWidgetService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="185" max-vertical-offset="1003">
-              <caret line="23" column="78" selection-start-line="23" selection-start-column="78" selection-end-line="23" selection-end-column="78" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#920#921#0" expanded="true" />
-                <element signature="e#947#948#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SingleLocationUpdateService.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/services/SingleLocationUpdateService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156">
-              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SendLocationsAsyncTask.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/utils/SendLocationsAsyncTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="1020">
-              <caret line="20" column="43" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommonFunctions.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/utils/CommonFunctions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3689" max-vertical-offset="6392">
-              <caret line="217" column="49" selection-start-line="217" selection-start-column="41" selection-end-line="217" selection-end-column="49" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -1574,12 +1502,13 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/services/ActivityRecognitionService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/ui/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/help_appwidget.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/xml/help_appwidget_info.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/services/UpdateWidgetService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/receivers/HelpWidgetReceiver.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/services/LocationUpdateService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/ui/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -1843,6 +1772,7 @@
     <property name="LayoutCode.rearrangeEntriesJava" value="false" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../BigAppleSearch" />
   </component>
   <component name="RunManager" selected="Android Application.app">
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -2010,8 +1940,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1364" height="766" extended-state="0" />
-    <editor active="true" />
+    <frame x="1" y="1" width="1364" height="766" extended-state="1" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2026,7 +1956,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.85714287" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.92939246" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.8062397" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13726994" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -2071,33 +2001,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/utils/CommonFunctions.java">
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-21/com/android/internal/os/ZygoteInit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3689" max-vertical-offset="6392">
-          <caret line="217" column="49" selection-start-line="217" selection-start-column="41" selection-end-line="217" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/services/SingleLocationUpdateService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/utils/SendLocationsAsyncTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="1020">
-          <caret line="20" column="43" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.44406196" vertical-offset="14209" max-vertical-offset="14790">
+          <caret line="900" column="0" selection-start-line="900" selection-start-column="0" selection-end-line="900" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1714" max-vertical-offset="2414">
+        <state vertical-scroll-proportion="0.32702237" vertical-offset="1714" max-vertical-offset="2414">
           <caret line="112" column="79" selection-start-line="112" selection-start-column="63" selection-end-line="112" selection-end-column="79" />
           <folding>
             <element signature="e#6308#6347#0" expanded="true" />
@@ -2105,10 +2019,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-21/com/android/internal/os/ZygoteInit.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/help_appwidget_info.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44406196" vertical-offset="14209" max-vertical-offset="14790">
-          <caret line="900" column="0" selection-start-line="900" selection-start-column="0" selection-end-line="900" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.029259896" vertical-offset="0" max-vertical-offset="581">
+          <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -2118,23 +2032,26 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.222222" vertical-offset="0" max-vertical-offset="578">
+        <state vertical-scroll-proportion="0.64440435" vertical-offset="0" max-vertical-offset="578">
           <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/help_appwidget_info.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/receivers/HelpWidgetReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
-          <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
-          <folding />
+        <state vertical-scroll-proportion="0.11703958" vertical-offset="0" max-vertical-offset="1241">
+          <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
+          <folding>
+            <element signature="e#2657#2658#0" expanded="true" />
+            <element signature="e#2720#2721#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/services/UpdateWidgetService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="185" max-vertical-offset="1003">
+        <state vertical-scroll-proportion="0.36267605" vertical-offset="185" max-vertical-offset="1003">
           <caret line="23" column="78" selection-start-line="23" selection-start-column="78" selection-end-line="23" selection-end-column="78" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -2144,26 +2061,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/receivers/HelpWidgetReceiver.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/services/SingleLocationUpdateService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241">
-          <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.20481928" vertical-offset="0" max-vertical-offset="1156">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/utils/SendLocationsAsyncTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20481928" vertical-offset="85" max-vertical-offset="1020">
+          <caret line="20" column="43" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/utils/CommonFunctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3689" max-vertical-offset="6392">
+          <caret line="217" column="49" selection-start-line="217" selection-start-column="41" selection-end-line="217" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/services/LocationUpdateService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.571429" vertical-offset="1788" max-vertical-offset="2771">
+          <caret line="116" column="25" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="25" />
           <folding>
-            <element signature="e#2657#2658#0" expanded="true" />
-            <element signature="e#2720#2721#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/clickforhelp/controllers/ui/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="12.698944" vertical-offset="6863" max-vertical-offset="15419">
-          <caret line="832" column="38" selection-start-line="832" selection-start-column="38" selection-end-line="832" selection-end-column="38" />
+        <state vertical-scroll-proportion="5.5194807" vertical-offset="0" max-vertical-offset="14909">
+          <caret line="25" column="59" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#18535#23030#0" expanded="true" />
-            <element signature="e#23019#23020#0" expanded="true" />
-            <element signature="e#30693#30694#0" expanded="true" />
+            <element signature="e#13067#13068#0" expanded="true" />
+            <element signature="e#13115#13116#0" expanded="true" />
+            <element signature="e#18812#19384#0" expanded="true" />
+            <element signature="e#19373#19374#0" expanded="true" />
+            <element signature="e#20127#20128#0" expanded="true" />
+            <element signature="e#20168#20169#0" expanded="true" />
+            <element signature="e#25950#26270#0" expanded="true" />
+            <element signature="e#26259#26260#0" expanded="true" />
+            <element signature="e#27014#27430#0" expanded="true" />
+            <element signature="e#27415#27416#0" expanded="true" />
+            <element signature="e#27788#28180#0" expanded="true" />
+            <element signature="e#28173#28174#0" expanded="true" />
           </folding>
         </state>
       </provider>

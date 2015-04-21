@@ -63,7 +63,6 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import static com.example.clickforhelp.controllers.utils.CommonFunctions.checkLoggedIn;
 import static com.example.clickforhelp.controllers.utils.CommonFunctions.isMyServiceRunning;
@@ -158,6 +157,12 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     //String to get the activity type
     private String mActivityType = AppPreferences.SharedPrefActivityRecognition.WALKING;
 
+    //boolean to check if the activity is in foreground
+    private boolean mIsForeground = true;
+
+    //searching
+    private final static String SEARCHING = "searching";
+
 
     //
 
@@ -222,6 +227,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     @Override
     protected void onResume() {
         super.onResume();
+        mIsForeground = true;
         LocalBroadcastManager.getInstance(this).registerReceiver(mActivityBroadcastReceiver,
                 new IntentFilter("activity"));
         if (isMyServiceRunning(LocationUpdateService.class,
@@ -248,6 +254,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     protected void onPause() {
         super.onPause();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mActivityBroadcastReceiver);
+        mIsForeground = false;
     }
 
     @Override
@@ -434,36 +441,37 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
             RequestParams helpParams = null, helpingParams = null;
             double lat = arg0.getLatitude();
             double lng = arg0.getLongitude();
-            if (mHelpFlag == ASK_HELP_FLAG && mActivityType != null && !mActivityType.equals(AppPreferences.SharedPrefActivityRecognition.STILL)) {
-                Log.d(TAG, "not still and idle");
-                Toast.makeText(this, "not still and idle", Toast.LENGTH_SHORT).show();
-                mIsStill = false;
-                sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.WALKING, UPDATE_HOME);
+            if (mIsForeground) {
+                if (mHelpFlag == ASK_HELP_FLAG && mActivityType != null && !mActivityType.equals(AppPreferences.SharedPrefActivityRecognition.STILL)) {
+                    Log.d(TAG, "not still and idle");
+                    mIsStill = false;
+                    sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.WALKING, UPDATE_HOME);
 
-            } else if (mHelpFlag == ASKED_HELP_FLAG) {
-                sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.WALKING, UPDATE);
-                helpParams = CommonFunctions.setParams(new String[]{
-                        HELPER_LIST, mUserEmail}, mContext);
-                new SendLocationsAsyncTask(MainActivity.this).execute(helpParams);
+                } else if (mHelpFlag == ASKED_HELP_FLAG) {
+                    sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.WALKING, UPDATE);
+                    helpParams = CommonFunctions.setParams(new String[]{
+                            HELPER_LIST, mUserEmail}, mContext);
+                    new SendLocationsAsyncTask(MainActivity.this).execute(helpParams);
 
-            } else if (mHelpFlag == HELPING_FLAG) {
-                sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.WALKING, UPDATE);
-                helpingParams = CommonFunctions.setParams(new String[]{
-                        TRACK_VICTIM, mUserEmail, mVictimUserEmail}, mContext);
-                new SendLocationsAsyncTask(this).execute(helpingParams);
+                } else if (mHelpFlag == HELPING_FLAG) {
+                    sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.WALKING, UPDATE);
+                    helpingParams = CommonFunctions.setParams(new String[]{
+                            TRACK_VICTIM, mUserEmail, mVictimUserEmail}, mContext);
+                    new SendLocationsAsyncTask(this).execute(helpingParams);
 
-            } else if (mHelpFlag == ASK_HELP_FLAG &&
-                    mActivityType != null &&
-                    mActivityType.equals(AppPreferences.SharedPrefActivityRecognition.STILL)) {
-                Log.d(TAG, "still and idle");
-                if (!mIsStill) {
-                    Log.d(TAG, "1st time sending still update");
-                    sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.STILL, UPDATE_HOME);
-                    mIsStill = true;
-                } else {
-                    Log.d(TAG, "later calling home");
-                    RequestParams homeParams = CommonFunctions.setParams(new String[]{"home", mUserEmail}, mContext);
-                    new SendLocationsAsyncTask(this).execute(homeParams);
+                } else if (mHelpFlag == ASK_HELP_FLAG &&
+                        mActivityType != null &&
+                        mActivityType.equals(AppPreferences.SharedPrefActivityRecognition.STILL)) {
+                    Log.d(TAG, "still and idle");
+                    if (!mIsStill) {
+                        Log.d(TAG, "1st time sending still update");
+                        sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.STILL, UPDATE_HOME);
+                        mIsStill = true;
+                    } else {
+                        Log.d(TAG, "later calling home");
+                        RequestParams homeParams = CommonFunctions.setParams(new String[]{"home", mUserEmail}, mContext);
+                        new SendLocationsAsyncTask(this).execute(homeParams);
+                    }
                 }
             }
         }
@@ -560,82 +568,11 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View v) {
                 if (mHelpFlag == ASK_HELP_FLAG) {
-
-                    if (mAnimation != null) {
-                        mHelpButton.startAnimation(mAnimation);
-                    }
-                    removeMarkers();
-                    mIsHighAccuracy = true;
-
-                    resetAccuracyOfLocation();
-                    RequestParams params = CommonFunctions.helpParams(
-                            ASK_HELP_PATH, mUserEmail, mContext);
-                    changeTextOfButton(ASKED_HELP);
-                    mHelpFlag = ASKED_HELP_FLAG;
-                    new CommonResultAsyncTask(MainActivity.this, ASK_HELP_TEXT,
-                            ASK_HELP_FLAG).execute(params);
-                    mPeopleTextView.setText("searching...");
-                    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                    Intent viewIntent = new Intent(MainActivity.this,
-                            MainActivity.class);
-                    viewIntent.putExtra(AppPreferences.IntentExtras.HELP_EXTRA,
-                            mHelpFlag);
-                    PendingIntent viewPendingIntent = PendingIntent
-                            .getActivity(MainActivity.this, 0, viewIntent,
-                                    PendingIntent.FLAG_CANCEL_CURRENT);
-                    Intent cancelIntent = new Intent(MainActivity.this,
-                            MainActivity.class);
-                    cancelIntent.putExtra(
-                            AppPreferences.IntentExtras.HELP_EXTRA, 0);
-
-                    PendingIntent cancelPendingIntent = PendingIntent
-                            .getService(MainActivity.this, 0, cancelIntent,
-                                    PendingIntent.FLAG_CANCEL_CURRENT);
-
-                    Notification notification = new Notification.Builder(
-                            MainActivity.this)
-                            .setContentTitle("Asked for help")
-                            .setContentText(
-                                    "click on cancel if you no longer need help. \n"
-                                            + " click on view to locate helpers")
-                            .setSmallIcon(R.drawable.ic_launcher)
-                            .setAutoCancel(false)
-                            .addAction(R.drawable.cancel, "cancel",
-                                    cancelPendingIntent)
-                            .addAction(R.drawable.view, "view",
-                                    viewPendingIntent).build();
-                    notificationManager.notify(
-                            AppPreferences.Flags.NOTIFICATION_FLAG,
-                            notification);
-                    notification.flags |= Notification.FLAG_NO_CLEAR;
+                    buttonClickStuff(true, false, true, ASKED_HELP_FLAG, ASKED_HELP, SEARCHING);
                 } else if (mHelpFlag == ASKED_HELP_FLAG) {
-                    removeMarkers();
-                    RequestParams params = CommonFunctions.helpParams(
-                            HELP_RECEIVED_PATH, mUserEmail, mContext);
-                    changeTextOfButton(ASK_HELP);
-                    mHelpFlag = ASK_HELP_FLAG;
-                    mIsHighAccuracy = false;
-                    resetAccuracyOfLocation();
-                    mHelpButton.clearAnimation();
-                    new CommonResultAsyncTask(MainActivity.this, HELPED_TEXT,
-                            ASKED_HELP_FLAG).execute(params);
-                    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                    notificationManager
-                            .cancel(AppPreferences.Flags.NOTIFICATION_FLAG);
-                    mPeopleTextView.setText("searching...");
-
+                    buttonClickStuff(false,false,false,ASK_HELP_FLAG,ASK_HELP,SEARCHING);
                 } else if (mHelpFlag == HELPING_FLAG) {
-                    removeMarkers();
-                    changeTextOfButton(ASK_HELP);
-                    mHelpFlag = ASK_HELP_FLAG;
-                    mIsHighAccuracy = false;
-                    resetAccuracyOfLocation();
-                    mHelpButton.clearAnimation();
-                    RequestParams params = CommonFunctions.helpParams(
-                            HELPED_PATH, mUserEmail, mContext);
-                    new CommonResultAsyncTask(MainActivity.this, HELPED_TEXT,
-                            HELPING_FLAG).execute(params);
-                    mPeopleTextView.setText("searching...");
+                   buttonClickStuff(false,false,false,ASK_HELP_FLAG,ASK_HELP,SEARCHING);
                 }
 
             }
@@ -674,30 +611,11 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
      */
     public void retriveIntentExtras(Intent intent) {
         if (intent.hasExtra(AppPreferences.IntentExtras.COORDINATES)) {
-            mHelpFlag = HELPING_FLAG;
-            mHelpButton.setAnimation(mAnimation);
-            mIsHighAccuracy = true;
-            changeTextOfButton(HELPING);
+            buttonClickStuff(true,false,true,HELPING_FLAG,HELPING,SEARCHING);
             mVictimUserEmail = intent
                     .getStringExtra(AppPreferences.IntentExtras.USERID);
-            resetAccuracyOfLocation();
-        } else if (intent.hasExtra(AppPreferences.IntentExtras.HELP_EXTRA)) {
-            mHelpFlag = intent.getExtras().getInt(
-                    AppPreferences.IntentExtras.HELP_EXTRA);
-            settingTextOfButton(mHelpFlag);
         } else if (intent.hasExtra(Intent.ACTION_SEND)) {
-            mHelpFlag = ASKED_HELP_FLAG;
-            mHelpButton.startAnimation(mAnimation);
-            mIsHighAccuracy = true;
-            changeTextOfButton(ASKED_HELP);
-            resetAccuracyOfLocation();
-            RequestParams params = CommonFunctions.helpParams(
-                    ASK_HELP_PATH, mUserEmail, mContext);
-            new CommonResultAsyncTask(MainActivity.this, ASK_HELP_TEXT,
-                    ASK_HELP_FLAG).execute(params);
-            mPeopleTextView.setText("searching...");
-
-
+            buttonClickStuff(true,false,true,ASKED_HELP_FLAG,ASKED_HELP,SEARCHING);
         }
 
     }
@@ -843,7 +761,6 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
 
     public void settingUpActivityRecognition() {
         if (!mIsEnabled) {
-            Toast.makeText(mContext, "enabling", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ActivityRecognitionService.class);
             PendingIntent callbackIntent = PendingIntent.getService(this, 0,
                     intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -904,6 +821,49 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
         } else {
             new SendLocationsAsyncTask().execute(updateLocationParams);
         }
+
+    }
+
+    public void buttonClickStuff(boolean animation, boolean markers, boolean accuracy, int helpFlag, String buttonText, String peopleText) {
+        if (helpFlag == ASKED_HELP_FLAG) {
+            RequestParams params = CommonFunctions.helpParams(
+                    ASK_HELP_PATH, mUserEmail, mContext);
+            mHelpFlag = ASKED_HELP_FLAG;
+            new CommonResultAsyncTask(MainActivity.this, ASK_HELP_TEXT,
+                    ASK_HELP_FLAG).execute(params);
+        } else if (helpFlag == ASK_HELP_FLAG && mHelpFlag == HELPING_FLAG) {
+            RequestParams params = CommonFunctions.helpParams(
+                    HELPED_PATH, mUserEmail, mContext);
+            new CommonResultAsyncTask(MainActivity.this, HELPED_TEXT,
+                    HELPING_FLAG).execute(params);
+            mHelpFlag = helpFlag;
+        } else if (helpFlag == ASK_HELP_FLAG && mHelpFlag == ASKED_HELP_FLAG) {
+            RequestParams params = CommonFunctions.helpParams(
+                    HELP_RECEIVED_PATH, mUserEmail, mContext);
+            new CommonResultAsyncTask(MainActivity.this, HELPED_TEXT,
+                    ASKED_HELP_FLAG).execute(params);
+            mHelpFlag = helpFlag;
+        }else if(helpFlag==HELPING_FLAG){
+            mHelpFlag=helpFlag;
+        }
+
+        changeTextOfButton(buttonText);
+        if (mAnimation != null && animation) {
+            mHelpButton.startAnimation(mAnimation);
+        } else if (mAnimation != null && !animation) {
+            mHelpButton.clearAnimation();
+        }
+        mPeopleTextView.setText(SEARCHING);
+        if (markers) {
+            removeMarkers();
+        }
+        if (accuracy) {
+            mIsHighAccuracy = true;
+        } else {
+            mIsHighAccuracy = false;
+        }
+        resetAccuracyOfLocation();
+
 
     }
 
