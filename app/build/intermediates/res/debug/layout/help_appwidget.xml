@@ -18,5 +18,12 @@
         android:layout_height="wrap_content"
         android:text="0 people"
         android:textColor="@color/red"/>
+    <Button
+        android:id="@+id/help_widget_help_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/nyupurple"
+        android:textColor="@color/white"
+        android:text="refresh"/>
 
 </LinearLayout><!-- From: file:/C:/Users/krishnateja/AndroidStudioProjects/ClickForHelp/app/src/main/res/layout/help_appwidget.xml -->

@@ -124,6 +124,7 @@
             android:exported="false" />
         <service android:name="com.example.clickforhelp.controllers.services.ActivityRecognitionService"></service>
         <service android:name=".controllers.services.SingleLocationUpdateService"></service>
+        <service android:name=".controllers.services.UpdateWidgetService"></service>
 
         <meta-data
             android:name="com.google.android.gms.version"

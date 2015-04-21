@@ -436,16 +436,21 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
             double lng = arg0.getLongitude();
             if (mHelpFlag == ASK_HELP_FLAG && mActivityType != null && !mActivityType.equals(AppPreferences.SharedPrefActivityRecognition.STILL)) {
                 Log.d(TAG, "not still and idle");
+                Toast.makeText(this, "not still and idle", Toast.LENGTH_SHORT).show();
                 mIsStill = false;
                 sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.WALKING, UPDATE_HOME);
 
             } else if (mHelpFlag == ASKED_HELP_FLAG) {
                 sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.WALKING, UPDATE);
+                helpParams = CommonFunctions.setParams(new String[]{
+                        HELPER_LIST, mUserEmail}, mContext);
+                new SendLocationsAsyncTask(MainActivity.this).execute(helpParams);
 
             } else if (mHelpFlag == HELPING_FLAG) {
                 sendLocationUpdate(lat, lng, AppPreferences.SharedPrefActivityRecognition.WALKING, UPDATE);
                 helpingParams = CommonFunctions.setParams(new String[]{
                         TRACK_VICTIM, mUserEmail, mVictimUserEmail}, mContext);
+                new SendLocationsAsyncTask(this).execute(helpingParams);
 
             } else if (mHelpFlag == ASK_HELP_FLAG &&
                     mActivityType != null &&
@@ -460,20 +465,6 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
                     RequestParams homeParams = CommonFunctions.setParams(new String[]{"home", mUserEmail}, mContext);
                     new SendLocationsAsyncTask(this).execute(homeParams);
                 }
-            }
-
-            if (mHelpFlag == ASKED_HELP_FLAG) {
-                Toast.makeText(this, "looking for helpers->" + mUserEmail,
-                        Toast.LENGTH_SHORT).show();
-                new SendLocationsAsyncTask(MainActivity.this).execute(helpParams);
-            } else if (mHelpFlag == HELPING_FLAG) {
-                Toast.makeText(this, "looking for victims", Toast.LENGTH_SHORT)
-                        .show();
-                new SendLocationsAsyncTask(this).execute(helpingParams);
-            } else {
-                Toast.makeText(this, "looking for users", Toast.LENGTH_SHORT)
-                        .show();
-
             }
         }
     }
@@ -694,12 +685,25 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
             mHelpFlag = intent.getExtras().getInt(
                     AppPreferences.IntentExtras.HELP_EXTRA);
             settingTextOfButton(mHelpFlag);
+        } else if (intent.hasExtra(Intent.ACTION_SEND)) {
+            mHelpFlag = ASKED_HELP_FLAG;
+            mHelpButton.startAnimation(mAnimation);
+            mIsHighAccuracy = true;
+            changeTextOfButton(ASKED_HELP);
+            resetAccuracyOfLocation();
+            RequestParams params = CommonFunctions.helpParams(
+                    ASK_HELP_PATH, mUserEmail, mContext);
+            new CommonResultAsyncTask(MainActivity.this, ASK_HELP_TEXT,
+                    ASK_HELP_FLAG).execute(params);
+            mPeopleTextView.setText("searching...");
+
+
         }
 
     }
 
 	/*
-	 * method to reset the accuracy of how precise we want the location update
+     * method to reset the accuracy of how precise we want the location update
 	 */
 
     public void resetAccuracyOfLocation() {
