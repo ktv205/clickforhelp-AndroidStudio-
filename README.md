@@ -4,7 +4,7 @@ previously known as NYUSafety created new repo as I am now using android studio 
 
 ####Functionality
 #####1.Authentication:Login or signup with an email id(in this case users with nyu email id can signup).
-#####2.Map screen: A user can find see all the activity of other users in 1 mile radius.
+#####2.Map screen: A user can find/see all the activity of other users in 1 mile radius.
 #####3.Settings screen: User can control the location updates to the server.
 
 ####App Screenshots:
